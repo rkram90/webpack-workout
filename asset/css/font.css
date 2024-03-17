@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Custom Varta';
+    src: url('../fonts/Varta/Varta-VariableFont_wght.ttf') format('truetype'); 
+    /* Add other font formats as needed */
+    font-weight: normal; /* Adjust font weight if necessary */
+    font-style: normal; /* Adjust font style if necessary */
+}
+
+/* Apply the custom font to specific elements */
+body {
+    font-family: 'Custom Varta', sans-serif;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpack Plugin </title>
+    <link rel="stylesheet" href="../asset/css/reset.css">
+    <!-- Include Prism.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../asset/css/font.css">
+</head>
+
+<body>
+    <header>
+        <nav class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link active">Webpack Intro</a></li>
+                <li class="nav-item"><a href="#" class="nav-link ">Webpack Loader</a></li>
+                <li class="nav-item"><button class="ani-button">Webpack Plugin</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section>
+            <h1>Plugins</h1>
+            <hr>
+            <p>While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.</p>
+
+            <article>
+                <pre>
+                    <code class="language-javascript">
+                        const HtmlWebpackPlugin = require('html-webpack-plugin');
+                        const webpack = require('webpack'); //to access built-in plugins
+                        
+                        module.exports = {
+                          module: {
+                            rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+                          },
+                          plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+                        };
+                    </code>
+                  </pre>
+            </article>
+
+            <p>Some of the plugins are:</p>
+            <ul>
+                <li>1. HTML Webpack plugin</li>
+                <li>2. Environment</li>
+                <li>3. HTML minimizer</li>
+                <li>4. Mini CSS extract plugin</li>
+            </ul>
+        </section>
+        
+        
+        
+        <section class="mt-2">
+            <h2>Practice</h2>
+            <hr>
+            <button id="showWebpackDetailBtn" onclick="showWebpackDetails()">What is webpack?</button>
+            <template id="webpack-list-container"></template>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p id="copy-right-text" class="d-flex justify-content-center">&copy; 2024, Developed by rkram with love.</p>
+    </footer>
+
+</body>
+
+</html>

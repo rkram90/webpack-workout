@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpack CSS Loaders example</title>
+    <link rel="stylesheet" href="../asset/css/reset.css">
+    <!-- Include Prism.js styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../asset/css/font.css">
+    <link rel="stylesheet" href="../asset/css/style.css">
+</head>
+
+<body>
+    <header >
+      <nav class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a href="#" class="nav-link">Webpack Intro</a></li>
+          <li class="nav-item"><a href="#" class="nav-link active">Webpack Loader</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section>
+        <article>
+          <h2>Loaders in webpack</h2>
+          <hr>
+              <p>Webpack can process various file types by converting them into modules for your application using loaders.</p>
+              <p>Loaders are specified in the webpack configuration under the `module` key within `rules`.</p>
+              <p>Adding a loader requires two configuration options:</p>
+              <p>1. <code>test</code>: Identifies the file types to be transformed.</p>
+              <p>2. <code>use</code>: Specifies which loader Webpack should use for the transformation.</p>
+              <p>
+                Loaders can be chained </p>
+                <p>
+                  The output of the last loader will be included in the bundle
+                </p>
+                <p>
+                  The last loader needs to return Javascript, otherwise the bundled Javascript will be faulty
+                </p>
+              </p>
+              
+              <pre>
+                <code class="language-javascript">
+                  module.exports = {  
+                    // Other webpack configuration options...
+                  
+                    module: {
+                      rules: [
+                        {
+                          test: /\.ts$/,
+                          use: 'ts-loader',
+                          exclude: /node_modules/,
+                        },
+                      ],
+                    },
+                  };  
+                </code>
+              </pre>
+        </article>
+        <article>
+          <h3>CSS loader</h3>
+          <hr>
+          <div class="description">
+            <p><code>css-loader</code> reads in a css file as a string. You could replace it with raw-loader and get the same effect in a lot of situations. Since it just reads the file contents and nothing else, it's basically useless unless you chain it with another loader.</p>
+
+          <p><code>style-loader</code> takes those styles and creates a <code>&lt;style&gt;</code> tag in the page's <code>&lt;head&gt;</code> element containing those styles.</p>
+          </div>
+          <pre>
+            <code class="language-javascript">
+              module.exports = {  
+                // Other webpack configuration options...
+              
+                module: {
+                  rules: [
+                    {
+                      test: /\.css$/,
+                      use: [
+                      {
+                        loader: "style-loader"
+                      },
+                      {
+                       loader: "css-loader",
+                       options: { modules: true}
+                      }
+                      ],
+                      exclude: /node_modules/,
+                    },
+                  ],
+                },
+              };  
+            </code>
+          </pre>
+        </article>
+        <article>
+          <h3>SCSS loader</h3>
+          <hr>
+          <pre>
+            <code class="language-javascript">
+              module.exports = {  
+                // Other webpack configuration options...
+              
+                module: {
+                  rules: [
+                    {
+                      test: /\.s[ac]ss$/,
+                      use: [
+                      {
+                        loader: "style-loader"
+                      },
+                      {
+                       loader: "css-loader",
+                       options: { modules: true}
+                      },
+                      {
+                        loader: "sass-loader"
+                      }
+                      ],
+                      exclude: /node_modules/,
+                    },
+                  ],
+                },
+              };  
+            </code>
+          </pre>
+        </article>
+        <article>
+          <h3>Image loader</h3>
+          <hr>
+          <pre>
+            <code class="language-javascript">
+              module.exports = {  
+                // Other webpack configuration options...
+              
+                module: {
+                  rules: [
+                    {
+                      test: /.(png|jpg|jpeg|svg|gif)$/,
+                      type: "asset/resource"
+                    },
+                  ],
+                },
+              };  
+            </code>
+          </pre>
+        </article>
+        <article>
+          <h3>Font loader</h3>
+          <hr>
+          <pre>
+            <code class="language-javascript">
+              module.exports = {  
+                // Other webpack configuration options...
+              
+                module: {
+                  rules: [
+                    {
+                      test: /.(ttf|woff|woff2)$/,
+                      type: "asset/resource",
+                    },
+                  ],
+                },
+              };  
+            </code>
+          </pre>
+        </article>
+      </section>
+
+      
+    </main>
+    <footer>
+      <p id="copy-right-text" class="d-flex justify-content-center">&copy; 2024, Developed by rkram with love.</p>
+    </footer>
+
+
+    <!-- Include Prism.js script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+</body>
+
+</html>
